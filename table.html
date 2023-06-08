@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="title">
+    <h2>Soccer API</h2>
+  </div>
+  
+  <div id = "table1"></div>
+  <disp></disp>
+  <script >
+    //creates table
+    var table = document.createElement("table");
+    table.className = "myTable";
+    // Create the table body
+    var tbody = document.createElement("tbody");
+
+    // Create the first row
+    var row1 = document.createElement("tr");
+
+    // Create header 1
+    var positionH = document.createElement("th");
+    positionH.textContent = "Posicao";
+    row1.appendChild(positionH);
+
+    // Create header 2
+    var teamH = document.createElement("th");
+    teamH.textContent = "Nome";
+    row1.appendChild(teamH);
+
+    var pointsH = document.createElement("th");
+    pointsH.textContent = "Pontos";
+    row1.appendChild(pointsH);
+
+    var winsH = document.createElement("th");
+    winsH.textContent = "Vitorias";
+    row1.appendChild(winsH);
+
+    var losesH = document.createElement("th");
+    losesH.textContent = "Derrotas";
+    row1.appendChild(losesH);
+
+    var saldoH = document.createElement("th");
+    saldoH.textContent = "Saldo";
+    row1.appendChild(saldoH);
+
+    //appends the header section
+    tbody.appendChild(row1);
+
+    // Append the table body to the table
+    table.appendChild(tbody);
+
+    // Append the table to the document body
+    document.getElementById("table1").appendChild(table);
+
+
+    const listEl = document.querySelector('disp');
+    fetch('http://localhost:3000/table')
+    .then(response => response.json())
+    .then(data => {
+
+      data.forEach(post => {
+        
+      // Create the second row
+      var row2 = document.createElement("tr");
+
+      // Create data 1
+      var position = document.createElement("td");
+      position.textContent = post.posicao;
+      row2.appendChild(position);
+
+      // Create data 2
+      var name = document.createElement("td");
+      name.textContent = post.time.nome_popular;
+      row2.appendChild(name);
+
+      var points = document.createElement("td");
+      points.textContent = post.pontos;
+      row2.appendChild(points);
+
+      var wins = document.createElement("td");
+      wins.textContent = post.vitorias;
+      row2.appendChild(wins);
+
+      var loses = document.createElement("td");
+      loses.textContent = post.derrotas;
+      row2.appendChild(loses);
+
+      var saldo = document.createElement("td");
+      saldo.textContent = post.saldo_gols;
+      row2.appendChild(saldo);
+
+      tbody.appendChild(row2);
+
+
+      });
+    })   
+
+  </script>
+</body>
+</html>

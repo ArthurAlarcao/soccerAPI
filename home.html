@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css" >
+</head>
+<body>
+    <div class="title">
+        <h1>Soccer API</h1>
+    </div>
+    <div id = "ImageContainer"></div>
+    <div id = "table1"></div>
+
+    </div>
+
+    <disp></disp>
+    <script>
+    function callTable(id) {
+        
+    }
+
+    var table = document.createElement("table");
+    table.className = "camp";
+
+    var container = document.getElementById("ImageContainer");
+
+    document.getElementById("table1").appendChild(table);   
+
+    const listEl = document.querySelector('disp');
+    fetch('http://localhost:3000')
+    .then(response => response.json())
+    .then(data => {
+
+      data.forEach(post => {
+        var imgElement = document.createElement("img");
+        imgElement.src = post.logo;
+        container.appendChild(imgElement);
+        container.addEventListener("click",function(){
+            console.log(post.campeonato_id); 
+            if(post.campeonato_id == 10){
+                console.log(post.campeonato_id);
+                window.location.href = 'table.html';
+            }
+            
+        });
+        table.appendChild(container);
+
+
+      });
+    })   
+
+    </script>
+</body>
+</html>
